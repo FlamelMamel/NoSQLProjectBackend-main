@@ -1,0 +1,17 @@
+{
+  "name": "groupproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.сjs",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.сjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.1"
+  }
+}
