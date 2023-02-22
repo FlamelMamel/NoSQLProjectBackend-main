@@ -10,7 +10,7 @@ import multer from 'multer';
 
 mongoose.set("strictQuery", false);
 mongoose.connect(
-     'mongodb+srv://Flamel:jvY26UBU6i0r5pig@cluster0.8mp3abp.mongodb.net/?retryWrites=true&w=majority'
+     'mongodb+srv://Flamel:jvY26UBU6i0r5pig@cluster0.8mp3abp.mongodb.net/users?retryWrites=true&w=majority'
 ).then(() => {
      console.log('DB connected');
 }).catch((err) => {
