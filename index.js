@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { registerValidator, loginValidator } from './validators/auth.js';
 import checkUser from './middlewares/checkUser.js';
 
-import UserController from './controllers/UserController.js';
+import { register, login, getMyProfile, updateUserProfile }  from './controllers/UserController.js';
 
 import multer from 'multer';
 
@@ -39,12 +39,12 @@ app.get('/', async(req, res) => {
      res.send("something...");
 });
 
-app.post('/user/register', registerValidator, UserController.register); 
-app.post('/user/login', loginValidator, UserController.login);
-app.get('/user/myprofile', checkUser, UserController.getMyProfile);
-app.post('/user/update', checkUser, UserController.updateUserProfile);
+app.post('/user/register', registerValidator, register);
+app.post('/user/login', loginValidator, login);
+app.get('/user/myprofile', checkUser, getMyProfile);
+app.post('/user/update', checkUser, updateUserProfile);
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 4000;
 
 app.listen(port, (err) => {
      if(err){
