@@ -14,13 +14,9 @@ export const register = async (req, res) => {
           const hPassword = await bcrypt.hash(password, salt);
 
           const newDocument = new User({
-               name: req.body.name,
-               surname: req.body.surname,
                email: req.body.email,
+               username: req.body.username,
                hashedPassword: hPassword,
-               dateOfBirth: req.body.date,
-               phoneNumber: req.body.phone,
-               gender: req.body.gender
           });
 
           const newUser = await newDocument.save(); 
@@ -52,14 +48,14 @@ export const login = async (req, res) => {
                return res.status(404).json({
                     message: 'User not found' 
                });
-          };
+          }
 
           const isValidPassword = await bcrypt.compare(req.body.password, user._doc.hashedPassword);
           if (!isValidPassword) {
                return res.status(400).json({
                     message: 'Incorrect email or password'
                });
-          };
+          }
 
           const token = jwt.sign({
                _id: user._id
@@ -79,7 +75,7 @@ export const login = async (req, res) => {
                message: 'Failed to log in'
           });
      }
-}
+};
 
 export const getMyProfile = async (req, res) => {
      try {
@@ -124,6 +120,6 @@ export const updateUserProfile = async (req, res) => {
           console.log(error);
           res.status(500).json({
                message: 'No access'
-          })
+          });
      }
-}
+};
