@@ -1,10 +1,6 @@
 
-import Doctor from "../models/Doctor.js";
+
 import Manga from "../models/Manga.js";
-import { validationResult } from 'express-validator';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import User from "../models/User.js";
 
 export const getAllMangas = async (_, res) => {
     try {
