@@ -1,47 +1,10 @@
-import Admin from "../models/Admin.js";
+
 import Doctor from "../models/Doctor.js";
 import Manga from "../models/Manga.js";
 import { validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from "../models/User.js";
-
-export const register = async (req, res) => {
-    try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()){
-            return res.status(400).json(errors.array());
-        }
-        const password = req.body.password;
-        const salt = await bcrypt.genSalt(10);
-        const hPassword = await bcrypt.hash(password, salt);
-
-        const newDocument = new Admin({
-            username: req.body.username,
-            hashedPassword: hPassword
-        });
-
-        const newAdmin = await newDocument.save();
-
-        const token = jwt.sign({
-            _id: newAdmin._id
-        }, 'adminkey', {
-            expiresIn: '3d'
-        });
-
-        const { hashedPassword, ...adminData } = newAdmin._doc;
-
-        res.json({
-            ...adminData,
-            token
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: 'Failed to add new admin'
-        });
-    }
-};
 
 export const getAllMangas = async (_, res) => {
     try {
@@ -104,18 +67,6 @@ export const uploadManga = async (req, res) => {
         console.log(error);
         res.status(500).json({
             message: 'Failed to register'
-        });
-    }
-};
-
-export const uploadMangaImage = async (req, res) => {
-    try {
-        const uploadedMangaImage = await Hospital.findByIdAndUpdate(req.body.id, {$set: {imageUrl: req.file.originalname}});
-        res.json(uploadedMangaImage);
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            message: 'Error'
         });
     }
 };
