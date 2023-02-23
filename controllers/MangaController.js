@@ -45,8 +45,8 @@ export const uploadManga = async (req, res) => {
     try {
         const newDocument = new Manga({
             title: req.body.title,
-            linkToPdf: req.file.linkToPdf,
-            linkToImage: req.file.linkToImage,
+            linkToPdf: req.file.filename,
+            linkToImage: req.file.image,
             issue: req.body.issue,
             category: req.body.category,
         });
