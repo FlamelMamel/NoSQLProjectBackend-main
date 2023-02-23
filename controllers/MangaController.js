@@ -1,6 +1,6 @@
 
 
-import Manga from "../models/Manga.js";
+import mangas from "../models/Manga.js";
 
 export const getAllMangas = async (_, res) => {
     try {
@@ -43,7 +43,7 @@ export const updateMangaInfo = async (req, res) => {
 
 export const uploadManga = async (req, res) => {
     try {
-        const newDocument = new Manga({
+        const newDocument = new mangas({
             title: req.body.title,
             linkToPdf: req.file.filename,
             linkToImage: req.file.image,
