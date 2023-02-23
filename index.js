@@ -5,6 +5,7 @@ import { registerValidator, loginValidator } from './validators/auth.js';
 import checkUser from './middlewares/checkUser.js';
 
 import { register, login, getMyProfile, updateUserProfile }  from './controllers/UserController.js';
+import { uploadManga }  from './controllers/MangaController.js';
 
 import multer from 'multer';
 
@@ -41,6 +42,7 @@ app.get('/', async(req, res) => {
 
 app.post('/user/register', register);
 app.post('/user/login', login);
+app.post('/admin/manga/upload', upload.fields([{ name: 'linkToPdf', maxCount: 1 }, { name: 'linkToImage', maxCount: 1 }]), uploadManga);
 
 const port = process.env.PORT || 4000;
 
