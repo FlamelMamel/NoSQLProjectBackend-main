@@ -42,7 +42,7 @@ app.get('/', async(req, res) => {
 
 app.post('/user/register', register);
 app.post('/user/login', login);
-app.post('/admin/manga/upload', upload.fields([{ name: 'linkToPdf', maxCount: 1 }, { name: 'linkToImage', maxCount: 1 }]), uploadManga);
+app.post('/admin/manga/upload', upload.fields([{ name: 'filename', maxCount: 1 }, { name: 'image', maxCount: 1 }]), uploadManga);
 
 const port = process.env.PORT || 4000;
 
